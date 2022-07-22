@@ -20,8 +20,11 @@ document.addEventListener('DOMContentLoaded', () => {
     anchor.group.add(plane);
 
     // start AR
+    console.log('start AR---');
     await mindarThree.start();
+    console.log('mindarThree started');
     renderer.setAnimationLoop(() => {
+      console.log('render');
       renderer.render(scene, camera);
     });
   }
