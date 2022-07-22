@@ -1,48 +1,29 @@
-import * as THREE from './src/applications/libs/three.js-r132/build/three.module.js';
+const THREE = window.MINDAR.IMAGE.THREE;
 
-console.log('launched!!', THREE);
+document.addEventListener('DOMContentLoaded', () => {
+  console.log('started');
+  const start = async() => {
+    // initialize MindAR 
+    const mindarThree = new window.MINDAR.IMAGE.MindARThree({
+      container: document.body,
+      imageTargetSrc: './src/assets/targets/test.mind',
+    });
+    const {renderer, scene, camera} = mindarThree;
 
-document.addEventListener("DOMContentLoaded", async () => {
-    
-    const scene = new THREE.Scene();
-      
-    const geometry = new THREE.BoxGeometry(1, 1, 1);
-    const material = new THREE.MeshBasicMaterial({color: "#0000ff"});
-    const cube = new THREE.Mesh(geometry, material);
-    
-    scene.add(cube);
-    cube.position.set(0, 0, -2);
-    cube.rotation.set(0, Math.PI/4, 0);
-    
-    const camera = new THREE.PerspectiveCamera();
-    camera.position.set(1, 1, 5);
-    
-    const renderer = new THREE.WebGLRenderer({alpha: true});
-    renderer.setSize(500, 500);
-    renderer.render(scene, camera);
-    
-    const video = document.createElement("video");
-    
-    let stream = null;
+    // create AR object
+    const geometry = new THREE.PlaneGeometry(1, 1);
+    const material = new THREE.MeshBasicMaterial({color: 0x00ffff, transparent: true, opacity: 0.5});
+    const plane = new THREE.Mesh(geometry, material);
 
-    
-    video.setAttribute('autoplay', '');
-    video.setAttribute('muted', '');
-    video.setAttribute('playsinline', '');
-    console.log('autoplay');
-    
-    navigator.mediaDevices.getUserMedia({video: true}).then((stream) => {
-        video.srcObject = stream;
-        video.play(); 
-    })
-    
-    video.style.position = "absolute";
-    video.style.width = renderer.domElement.width;
-    video.style.height = renderer.domElement.height;
-    renderer.domElement.style.position = "absolute";
-    
-    document.body.appendChild(video);
-    document.body.appendChild(renderer.domElement);
-    
-    
+    // create anchor
+    const anchor = mindarThree.addAnchor(0);
+    anchor.group.add(plane);
+
+    // start AR
+    await mindarThree.start();
+    renderer.setAnimationLoop(() => {
+      renderer.render(scene, camera);
+    });
+  }
+  start();
 });
