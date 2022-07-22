@@ -29,6 +29,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     video.setAttribute('autoplay', '');
     video.setAttribute('muted', '');
     video.setAttribute('playsinline', '');
+    console.log('autoplay');
     
     navigator.mediaDevices.getUserMedia({video: true}).then((stream) => {
         video.srcObject = stream;
