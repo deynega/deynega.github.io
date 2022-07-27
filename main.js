@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
       imageTargetSrc: './src/assets/targets/card.mind',
     });
 
-    mindarThree.switchCamera();
+    // mindarThree.switchCamera();
     const {renderer, scene, camera} = mindarThree;
 
     // add light
@@ -49,10 +49,26 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     document.querySelector("#switch").addEventListener("click", () => {
-      console.log('switch camera');
-      mindarThree.switchCamera();
+      console.log('switch click');
+      // mindarThree.switchCamera();
     });
-    
+
+    document.querySelector("#check").addEventListener("click", async () => {
+      console.log('check click');
+
+      const dev = navigator.mediaDevices.enumerateDevices().then(mediaD => {
+
+        console.log('mediaD - ' + JSON.stringify(mediaD));
+
+
+       let mediaDevices = mediaD.filter(d => d.kind === 'videoinput');
+        console.log(JSON.stringify(`mediaDevices - ${ JSON.stringify(mediaDevices) }`));
+
+      })
+
+      console.log('enumerateDevices - ', navigator.mediaDevices.enumerateDevices());
+
+    });
     
     
     await mindarThree.start();
