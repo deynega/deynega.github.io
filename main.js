@@ -47,29 +47,6 @@ document.addEventListener('DOMContentLoaded', () => {
     anchor.onTargetLost = () => {
       console.log("on target lost");
     }
-
-    document.querySelector("#switch").addEventListener("click", () => {
-      console.log('switch click');
-      // mindarThree.switchCamera();
-    });
-
-    document.querySelector("#check").addEventListener("click", async () => {
-      console.log('check click');
-
-      const dev = navigator.mediaDevices.enumerateDevices().then(mediaD => {
-
-        console.log('mediaD - ' + JSON.stringify(mediaD));
-
-
-       let mediaDevices = mediaD.filter(d => d.kind === 'videoinput');
-        console.log(JSON.stringify(`mediaDevices - ${ JSON.stringify(mediaDevices) }`));
-
-      })
-
-      console.log('enumerateDevices - ', navigator.mediaDevices.enumerateDevices());
-
-    });
-    
     
     await mindarThree.start();
     renderer.setAnimationLoop(() => {
