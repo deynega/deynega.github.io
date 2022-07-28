@@ -12,8 +12,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const start = async() => {
     // initialize MindAR 
     const mindarThree = new window.MINDAR.IMAGE.MindARThree({
-      container: document.body,
+      container: document.querySelector("#container"),
       imageTargetSrc: './src/assets/targets/card.mind',
+      uiScanning: '#scanning',
+      uiLoading: 'yes'
     });
 
     // mindarThree.switchCamera();
