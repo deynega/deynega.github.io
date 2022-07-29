@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // initialize MindAR 
     const mindarThree = new window.MINDAR.IMAGE.MindARThree({
       container: document.querySelector("#container"),
-      imageTargetSrc: './src/assets/targets/head.mind',
+      imageTargetSrc: './src/assets/targets/tShirt1.mind',
       uiScanning: '#scanning',
       uiLoading: 'yes'
     });
