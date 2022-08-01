@@ -12,7 +12,9 @@ export const mockWithVideo = (path) => {
 
 	startButton.addEventListener('click', () => {
 	  const stream = video.captureStream();
+      video.muted = true;
 	  video.play();
+
 	  document.body.removeChild(startButton);
 	  resolve(stream);
 	});
