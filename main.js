@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const start = async() => {
 
-    // mockWithVideo("./src/assets/video/test.mov");
+    mockWithVideo("./src/assets/video/mock.mov");
 
 
     // initialize MindAR
